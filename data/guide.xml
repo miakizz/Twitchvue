@@ -23,7 +23,7 @@
 	</ad>
 </ads>
 <channel number="2" name="HTLNFO">
-	<listing timeslot="1" type="1" data2="0" data3="0" data4="0" continuous="continuous">Hotel Information</listing>
+	<listing timeslot="1" type="1" data2="0" data3="0" data4="0" continuous="continuous">Hotel Information </listing>
 </channel>
 <channel number="3" name="KCBS">
 	<notice>The Greenhill County public offices will be closed to the public Monday, May 3, 1999 for renovation.</notice>

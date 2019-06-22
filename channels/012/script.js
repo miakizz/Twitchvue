@@ -16,7 +16,7 @@ class Channel12 extends Channel {
     show() {
         super.show();
 
-        this.player = new YT.Player('ytplayer', {
+        /*this.player = new YT.Player('ytplayer', {
             height: '360',
             width: '425',
             videoId: '9NSVU4Gv_wA',
@@ -25,11 +25,12 @@ class Channel12 extends Channel {
             'onStateChange': this.onPlayerStateChange
             },
             playerVars: { 
-                'autoplay': 1,
+                'autoplay': 0,
                 'controls': 0, 
-                'rel' : 0
+				'rel' : 0,
+				'mute' : 1
             }
-        });
+        });*/
 
         // marquee
         this.marquee = $('marquee').marquee();

@@ -1,0 +1,15 @@
+type: "1" or "9" for dark blue, "movie" for light blue
+
+Just Talking - Headphone symbol
+
+Just Game Title
+Just Game Title Rating
+Game Title - Stream Description 
+Game Title (year) - Game Description
+Time of start and duration?
+			xml += `<channel number="${i}" name="${twitch[i]["stream"]["channel"]["display_name"].split("_")[0].substring(0,6).toUpperCase()}">`
+if(twitch[i]["stream"]["channel"]["game"] == "Just Talking"){
+	xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["text"].replace("<p>","").replace("</p>","")} </listing></channel>` //Headphone Symbol
+
+
+<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]} - ${twitch[i]["text"].replace("<p>","").replace("</p>","")}</listing></channel>;
