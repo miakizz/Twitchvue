@@ -138,9 +138,7 @@ body {
   width: 425;
   height: 360;
   text-align: center; }
-  .tv .screen #ch-12 .video-left p {
-    padding-left: 50px;
-    line-height: 1.8; }
+  .tv .screen #ch-12 .video-left p {line-height: 1.3;}
 
 .tv .screen #ch-12 .guide-container {
   position: absolute;

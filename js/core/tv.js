@@ -61,8 +61,8 @@
             this.channel = new this.classes['Channel' + number]($('.current-channel'), window.guideData);
             this.channel.show();
             $('.current-channel, #tvm-top-right').animate({opacity: 1}, this.firstStart ? this.warmupTime : this.warmupTime / 10, 0, () => {
-                this.channel.ready();
-            });
+
+			});
             $('#tvm-top-right').text(Helpers.padLeft(number, 2));
             setTimeout(() => {
                 $('#tvm-top-right').text('');
@@ -109,7 +109,7 @@
 
         scale = Math.min(width/this.maxWidth, height/this.maxHeight);
 
-        $('.tv').css({'transform': 'scale(' + scale + ')'});
+        //$('.tv').css({'transform': 'scale(' + scale + ')'});
 	}
 	getTwitch(mSelf, json){
 		let twitch = []; let i;
@@ -126,8 +126,8 @@
 				<p>Included in your Twitch Prime subscription</p>
 			</ad>
 			<ad duration="7">
-				<p>Prevue Guide</p>
-				<p>We are what's on</p>
+				<p>Prevue Guide® <br />We are what's on</p>
+				<p>Offering 24/7 Streaming Info</p>
 			</ad>
 			<ad duration="7">
 				<p>Twitch.TV</p>
@@ -139,12 +139,11 @@
 			</ad>
 		</ads>
 		`
-		for(i = 0; i<twitch.length; i++){
-			console.log(twitch[i]["stream"]["channel"]["mature"]);
-			xml += `<channel number="${i}" name="${twitch[i]["stream"]["channel"]["display_name"].split("_")[0].substring(0,6).toUpperCase()}">`
+		console.log(twitch.length);
+		for(i = 23; i<twitch.length; i++){
+			xml += `<channel number="${i+1}" name="${twitch[i]["stream"]["channel"]["display_name"].split("_")[0].substring(0,6).toUpperCase()}">`
 			if(twitch[i]["stream"]["channel"]["game"] == "Just Chatting"){
 				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["text"].replace("<p>","").replace("</p>","")} </listing></channel>`; //Headphone Symbol
-				console.log(i);
 				continue;
 			}
 			//If stream has no description, just do short listing
@@ -163,23 +162,21 @@
 					break;
 				case 2:
 					// Game
-					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}</listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
+					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}</listing><listing timeslot="${Math.random() > 0.5 ? "20" : "21"}" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
 					break;
 				case 3:
-					// Game
-					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}  ${twitch[i]["stream"]["channel"]["mature"] ? "" : ""}</listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
+					// Game Rating
+					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}  ${twitch[i]["stream"]["channel"]["mature"] ? "" : ""}</listing><listing timeslot="${Math.random() > 0.5 ? "20" : "21"}" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
 					break;
 				default:
 					break;
 			}
 		}
-		xml += `</guide>`
+		xml += `<channel noticeonly="noticeonly">
+		<notice>TwitchVue Networks, Inc</notice>
+		</channel></guide>`;
 		window.guideData = $($.parseXML(xml));
-		console.log($.parseXML(xml));
 		var defaultChannel = guideData.find('channel[watchable][default]').attr('number');
 		mSelf.showChannel(12);
-		if (undefined != defaultChannel && null != defaultChannel) {
-			mSelf.showChannel(defaultChannel);
-		} else {console.error("defaultChannel undefined");}
 	}
 }
