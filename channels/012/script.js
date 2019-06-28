@@ -16,25 +16,6 @@ class Channel12 extends Channel {
     show() {
         super.show();
 
-        /*this.player = new YT.Player('ytplayer', {
-            height: '360',
-            width: '425',
-            videoId: '9NSVU4Gv_wA',
-            events: {
-            'onReady': this.onPlayerReady,
-            'onStateChange': this.onPlayerStateChange
-            },
-            playerVars: { 
-                'autoplay': 0,
-                'controls': 0, 
-				'rel' : 0,
-				'mute' : 1
-            }
-        });*/
-
-        // marquee
-        this.marquee = $('marquee').marquee();
-
         // marquee just messes with everything, even this new JS version. replaces all my references to container stuff with new ones
         // gotta redeclare here
         this.listingGrid = this.container.find('#listing-grid');
@@ -51,10 +32,16 @@ class Channel12 extends Channel {
         this.date = this.container.find('.date');
 
         this.intervals.timeInterval = setInterval(() => {
-            this.realtime.text(moment().format('h:mm:ss'));
-            this.timePlus00.text(moment().startOf('hour').format('h:mm A'));
-            this.timePlus30.text(moment().startOf('hour').minutes(30).format('h:mm A'));
-            this.timePlus60.text(moment().startOf('hour').add(1, 'hours').format('h:mm A'));
+			this.realtime.text(moment().format('h:mm:ss'));
+			if(moment().minutes() < 30){
+            	this.timePlus00.text(moment().startOf('hour').format('h:mm A'));
+            	this.timePlus30.text(moment().startOf('hour').minutes(30).format('h:mm A'));
+				this.timePlus60.text(moment().startOf('hour').add(1, 'hours').format('h:mm A'));
+			} else {
+				this.timePlus00.text(moment().startOf('hour').minutes(30).format('h:mm A'));
+            	this.timePlus30.text(moment().startOf('hour').add(1, 'hours').format('h:mm A'));
+				this.timePlus60.text(moment().startOf('hour').add(1, 'hours').add(30, 'minutes').format('h:mm A'));
+			}
             this.date.text(moment().format('dddd MMMM D YYYY'));
         }, 1000);
 
@@ -192,7 +179,6 @@ class Channel12 extends Channel {
     }
 
     teardown() {
-        this.marquee.trigger('stop');
         super.teardown();
     }
 }

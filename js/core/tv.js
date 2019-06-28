@@ -38,18 +38,20 @@
             $('#tv-mute').click(() => {
                 this.toggleMute();
 			});
-			var mSelf = this;
-            $.ajax({
-				//url: "https://api.twitch.tv/kraken/streams/featured",
-				url: "twitch.json",
-				//url: "data/guide.xml",
-				headers: {"Accept": "application/vnd.twitchtv.v5+json", "Client-ID": "***REMOVED***"},
-				success: function(response){mSelf.getTwitch(mSelf, response);}
-			});
-        	YouTubeApi.loadYouTubeAPI();
+			this.loops = 0
+			this.newData();
         });
-        
-     }
+	 }
+	newData(){
+		var mSelf = this;
+		$.ajax({
+			url: "https://api.twitch.tv/kraken/streams/featured?limit=60",
+			//url: "twitch.json",
+			//url: "data/guide.xml",
+			headers: {"Accept": "application/vnd.twitchtv.v5+json", "Client-ID": "***REMOVED***"},
+			success: function(response){mSelf.getTwitch(mSelf, response);}
+		});
+	}
 
     showChannel(number, callback) {
         if (this.channel) {
@@ -58,17 +60,21 @@
 
         $('#tvm-top-right').css('opacity', '0');
         $('.current-channel').css('opacity', '0').attr('id', `ch-${number}`).load(`channels/${Helpers.padLeft(number, 3)}/layout.html`, () => {
-            this.channel = new this.classes['Channel' + number]($('.current-channel'), window.guideData);
+			this.channel = new this.classes['Channel' + number]($('.current-channel'), window.guideData);
+			this.marquee = $('marquee').marquee();
+			var obj = this;
+			this.marquee.on("stop", function() {
+				obj.loops++;
+				if(obj.loops % 3 == 0){
+					obj.newData();
+				}
+			});
             this.channel.show();
             $('.current-channel, #tvm-top-right').animate({opacity: 1}, this.firstStart ? this.warmupTime : this.warmupTime / 10, 0, () => {
 
 			});
-            $('#tvm-top-right').text(Helpers.padLeft(number, 2));
-            setTimeout(() => {
-                $('#tvm-top-right').text('');
-            }, 4000);
             this.firstStart = false;
-        });
+		});
     }
 
     toggleMute() {
@@ -121,44 +127,45 @@
 			<video id="oemoqEuJdFE" />
 		</videos>
 		<ads>
-			<ad duration="7">
+			<ad duration="25">
 				<p>Get up to 12 Months of Nintendo Switch Online</p>
 				<p>Included in your Twitch Prime subscription</p>
 			</ad>
-			<ad duration="7">
+			<ad duration="25">
 				<p>Prevue Guide® <br />We are what's on</p>
 				<p>Offering 24/7 Streaming Info</p>
 			</ad>
-			<ad duration="7">
+			<ad duration="25">
 				<p>Twitch.TV</p>
 				<p>Your number one destination for livestreaming</p>
 			</ad>
-			<ad duration="7">
+			<ad duration="25">
 				<p>Overwatch League<br />All-Access Pass</p>
 				<p>The best way to watch<br />the Overwatch League</p>
 			</ad>
 		</ads>
 		`
-		console.log(twitch.length);
-		for(i = 23; i<twitch.length; i++){
+		for(i = 0; i<twitch.length; i++){
 			xml += `<channel number="${i+1}" name="${twitch[i]["stream"]["channel"]["display_name"].split("_")[0].substring(0,6).toUpperCase()}">`
-			if(twitch[i]["stream"]["channel"]["game"] == "Just Chatting"){
+			if(twitch[i]["stream"]["channel"]["game"] == "Just Chatting" || twitch[i]["stream"]["channel"]["game"] == "Talk Shows & Podcasts"){
 				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["text"].replace("<p>","").replace("</p>","")} </listing></channel>`; //Headphone Symbol
 				continue;
 			}
+			let doc = new DOMParser().parseFromString(twitch[i]["text"], 'text/html');
+			let description = doc.body.textContent || "";
 			//If stream has no description, just do short listing
-			if(twitch[i]["text"].replace("<p>","").replace("</p>","") == ""){
+			if(description == ""){
 				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}</listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
 				continue;
 			}
 			switch(Math.floor(Math.random()*4)){
 				case 0:
 					// Game - Description
-					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]} - ${twitch[i]["text"].replace("<p>","").replace("</p>","")}</listing></channel>`;
+					xml += `<listing timeslot="19" type="movie" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]} - ${description.replace(/</g, "&lt;")}</listing></channel>`;
 					break;
 				case 1:
 					// Game - Description rating
-					xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]} - ${twitch[i]["text"].replace("<p>","").replace("</p>","")} ${twitch[i]["stream"]["channel"]["mature"] ? "" : ""}</listing></channel>`;
+					xml += `<listing timeslot="19" type="movie" data2="22" data3="7" data4="0">${description.replace(/</g, "&lt;")} ${twitch[i]["stream"]["channel"]["mature"] ? "" : ""}</listing></channel>`;
 					break;
 				case 2:
 					// Game
@@ -175,8 +182,9 @@
 		xml += `<channel noticeonly="noticeonly">
 		<notice>TwitchVue Networks, Inc</notice>
 		</channel></guide>`;
-		window.guideData = $($.parseXML(xml));
-		var defaultChannel = guideData.find('channel[watchable][default]').attr('number');
+		let escapedXML = xml.replace(/&/g, "&amp;");
+		console.log(escapedXML);
+		window.guideData = $($.parseXML(escapedXML));
 		mSelf.showChannel(12);
 	}
 }

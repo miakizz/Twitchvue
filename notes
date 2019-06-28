@@ -13,3 +13,46 @@ if(twitch[i]["stream"]["channel"]["game"] == "Just Talking"){
 
 
 <listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]} - ${twitch[i]["text"].replace("<p>","").replace("</p>","")}</listing></channel>;
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+		<!-- TV Simulator '99 - Zach Hall, 2017 -->
+		<guide>
+		<videos>
+			<video id="oemoqEuJdFE" />
+		</videos>
+		<ads>
+			<ad duration="25">
+				<p>Get up to 12 Months of Nintendo Switch Online</p>
+				<p>Included in your Twitch Prime subscription</p>
+			</ad>
+			<ad duration="25">
+				<p>Prevue Guide® <br />We are what's on</p>
+				<p>Offering 24/7 Streaming Info</p>
+			</ad>
+			<ad duration="25">
+				<p>Twitch.TV</p>
+				<p>Your number one destination for livestreaming</p>
+			</ad>
+			<ad duration="25">
+				<p>Overwatch League<br />All-Access Pass</p>
+				<p>The best way to watch<br />the Overwatch League</p>
+			</ad>
+		</ads>
+		<channel number="1" name="TWITCH"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Hearthstone  </listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="2" name="GAMESD"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Command &amp; Conquer: Red Alert 3 - Summer Games Done Quick 2019 is a speedrunning marathon benefiting the Doctors Without Borders. Watch over 160 hours of speedruns and support charity from June 23 - 30! 
+&amp;lt;p>&amp;lt;a href="/gamesdonequick">Click here&amp;lt;/a> to watch and join the cause!&amp;lt;/p></listing></channel><channel number="3" name="KATFTW"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">The Legend of Zelda: Breath of the Wild - This June, join us in celebrating Pride Month with LGBTQIA streamers and their communities on our front page every day. </listing></channel><channel number="4" name="GALACT"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Pokemon: Let's Go, Pikachu!/Eevee! - Cutthroat Pokemon is a winner take-all 5-Player Nuzlocke where savagery is the name of the game. Based on the hit Food Network series Cutthroat Kitchen, this series allows for players to purchase sabotages and benefits to aid them in a race to finish </listing></channel><channel number="5" name="RUBEND"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Music &amp; Performing Arts  </listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="6" name="ONESEC"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Destiny 2 - Hello everyone, my name is One Second Kill but most commonly referred to as “”OSK””.
+I stream Destiny 2 on PS4 everyday and try to create an entertaining and positive atmosphere for my stream.
+I do my best to interact with viewers consistently and provide quality game play within a chill, and fun loving community.
+</listing></channel><channel number="7" name="ASHEK"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">PLAYERUNKNOWN'S BATTLEGROUNDS</listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="8" name="STELLA"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Elf Shelf is a community full of love and positivity. We are just one big family here, come join the fun!
+ </listing></channel><channel number="9" name="MOLT"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Auto Chess</listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="10" name="DEAMON"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Internet’s first full time live stream mechanic! Works 40+ hours a week streaming his job so you learn about cars and how they work while he fixes them. Intended to educate, entertain, and save you money on your own car repairs. 
+ </listing></channel><channel number="11" name="TRIKSL"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Dota Underlords - Hey there! Welcome to the Button Mashers, we focus on playing a variety of games here. We hope you’ll enjoy our warm and welcoming community.
+</listing></channel><channel number="12" name="GAMEAT"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Retro  </listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="13" name="DISGUI"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Teamfight Tactics</listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="14" name="PURECH"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Destiny 2</listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="15" name="MIKETH"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Grand Theft Auto V</listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="16" name="NICHOL"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Hearthstone - Nicholena is a multi-server Legend Hearthstone player. She focuses on high level gameplay, chat interaction and a chill atmosphere. Come hang out and watch her climb to high ranks!
+ </listing></channel><channel number="17" name="360CHR"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Super Mario 64 - Chrism primarily focuses on game titles from the Super Mario, Pokemon and Pikmin franchises as he loves all kinds of retro games. If you want to watch Speedruns and Challenges this is the stream for you! Click here to watch and chat.
+ </listing></channel><channel number="18" name="CLASSY"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Beauty &amp; Body Art - Welcome to the classiest place on earth where we play games and talk about everything! I’m an Elder Scrolls Online partnered variety broadcaster who dabbles in SFX makeup and horror games!
+ </listing></channel><channel number="19" name="LIGHTI"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Bloodstained: Ritual of the Night  </listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="20" name="JEFFHO"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Dota Underlords - Magic Professional turned Meme playing and tuning viewer submitted deck ideas. 
+ </listing></channel><channel number="21" name="ASIVRS"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Fortnite  </listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="22" name="PATHRA"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">Hearthstone  </listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel number="23" name="IMPERI"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">Art - Welcome to the Dark Side - we have cookies! Come and say hi - we have a positive &amp;amp; friendly community that loves new friends and old. 
+ </listing></channel><channel number="24" name="TOWELL"><listing timeslot="19" type="movie" data2="22" data3="7" data4="0">World of Warcraft - Towelliee will be going over every aspect of the new expansion for World of Warcraft! Take Arms! 
+&amp;lt;br>&amp;lt;p>&amp;lt;a href="/towelliee">Click here&amp;lt;/a> to watch and chat live!&amp;lt;/p>
+&amp;lt;p>&amp;lt;a href="wow">&amp;lt;/a>&amp;lt;/p>
+</listing></channel><channel number="25" name="KATIEP"><listing timeslot="19" type="1" data2="22" data3="7" data4="0">F.E.A.R.: First Encounter Assault Recon  </listing><listing timeslot="21" type="1" data2="22" data3="7" data4="0"></listing></channel><channel noticeonly="noticeonly">
+		<notice>TwitchVue Networks, Inc</notice>
+		</channel></guide>
