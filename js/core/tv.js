@@ -65,7 +65,7 @@
 			var obj = this;
 			this.marquee.on("stop", function() {
 				obj.loops++;
-				if(obj.loops % 3 == 0){
+				if(obj.loops % 2 == 0){
 					obj.newData();
 				}
 			});
@@ -118,6 +118,7 @@
         //$('.tv').css({'transform': 'scale(' + scale + ')'});
 	}
 	getTwitch(mSelf, json){
+		console.log("getting twitch");
 		let twitch = []; let i;
 		twitch = json["featured"];
 		let xml = `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
@@ -147,12 +148,12 @@
 		`
 		for(i = 0; i<twitch.length; i++){
 			xml += `<channel number="${i+1}" name="${twitch[i]["stream"]["channel"]["display_name"].split("_")[0].substring(0,6).toUpperCase()}">`
-			if(twitch[i]["stream"]["channel"]["game"] == "Just Chatting" || twitch[i]["stream"]["channel"]["game"] == "Talk Shows & Podcasts"){
-				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["text"].replace("<p>","").replace("</p>","")} </listing></channel>`; //Headphone Symbol
-				continue;
-			}
 			let doc = new DOMParser().parseFromString(twitch[i]["text"], 'text/html');
 			let description = doc.body.textContent || "";
+			if(twitch[i]["stream"]["channel"]["game"] == "Just Chatting" || twitch[i]["stream"]["channel"]["game"] == "Talk Shows & Podcasts"){
+				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${description.replace(/</g, "&lt;")} </listing></channel>`; //Headphone Symbol
+				continue;
+			}
 			//If stream has no description, just do short listing
 			if(description == ""){
 				xml += `<listing timeslot="19" type="1" data2="22" data3="7" data4="0">${twitch[i]["stream"]["game"]}</listing><listing timeslot="20" type="1" data2="22" data3="7" data4="0"></listing></channel>`;
@@ -183,7 +184,7 @@
 		<notice>TwitchVue Networks, Inc</notice>
 		</channel></guide>`;
 		let escapedXML = xml.replace(/&/g, "&amp;");
-		console.log(escapedXML);
+		//console.log(escapedXML);
 		window.guideData = $($.parseXML(escapedXML));
 		mSelf.showChannel(12);
 	}

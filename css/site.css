@@ -91,7 +91,11 @@ body {
     width: 20px;
     height: 20px;
     top: 883;
-    left: 487; }
+	left: 487; }
+img {
+		max-width: 87%;
+		margin: auto;
+	}
 
 /* page */
 .tv {
@@ -125,9 +129,9 @@ body {
 
 .tv .screen #ch-12 .video-right {
   position: absolute;
-  right: 169;
+  right: 196;
   top: 128;
-  width: 450;
+  width: 423;
   height: 360; }
 
 .tv .screen #ch-12 .video-left {
